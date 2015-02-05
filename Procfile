@@ -1,1 +1,1 @@
-web: gunicorn RealAF
+worker: python RealAF.py
