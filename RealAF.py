@@ -7,16 +7,16 @@ import urlparse
 #from datetime import datetime, timedelta
 from local_settings import *
 
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
+# urlparse.uses_netloc.append("postgres")
+# url = urlparse.urlparse(os.environ["DATABASE_URL"])
+# 
+# conn = psycopg2.connect(
+#     database=url.path[1:],
+#     user=url.username,
+#     password=url.password,
+#     host=url.hostname,
+#     port=url.port
+# )
 
 def connect():
 	api = twitter.Api(consumer_key=MY_CONSUMER_KEY,
