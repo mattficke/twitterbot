@@ -1,22 +1,6 @@
-import re
-import sys
 import twitter
-import os
-import psycopg2
-import urlparse
-#from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 from local_settings import *
-
-# urlparse.uses_netloc.append("postgres")
-# url = urlparse.urlparse(os.environ["DATABASE_URL"])
-# 
-# conn = psycopg2.connect(
-#     database=url.path[1:],
-#     user=url.username,
-#     password=url.password,
-#     host=url.hostname,
-#     port=url.port
-# )
 
 def connect():
 	api = twitter.Api(consumer_key=MY_CONSUMER_KEY,
@@ -29,8 +13,13 @@ def connect():
 def find_tweets(api, search_query, max_id=None):
 	found_tweet = []
 	result = api.GetSearch(term=search_query)
+	my_tweets = api.GetUserTimeline(user_id=3018743621)
+	my_tweets_list = []
+	for sn in my_tweets:
+		my_tweets_list.append(sn.in_reply_to_user_id)
 	
 	for tweet in result:
+		if tweet.user.screen_name in my_tweets_list: continue
 		tweet_id = tweet.id
 		tweet_text = tweet.text
 		tweet_user = tweet.user.screen_name
