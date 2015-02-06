@@ -1,5 +1,4 @@
 import twitter
-from datetime import datetime, timedelta
 from local_settings import *
 
 def connect():
