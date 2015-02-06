@@ -10,16 +10,10 @@ def connect():
 	
 	return api
 
-def find_tweets(api, search_query, max_id=None):
-	found_tweet = []
+def find_tweets(api, search_query):
 	result = api.GetSearch(term=search_query)
-	my_tweets = api.GetUserTimeline(user_id=3018743621)
-	my_tweets_list = []
-	for sn in my_tweets:
-		my_tweets_list.append(sn.in_reply_to_user_id)
 	
 	for tweet in result:
-		if tweet.user.screen_name in my_tweets_list: continue
 		tweet_id = tweet.id
 		tweet_text = tweet.text
 		tweet_user = tweet.user.screen_name
