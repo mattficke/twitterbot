@@ -12,18 +12,19 @@ def connect():
 
 def find_tweets(search_query):
     api = connect()
-    result = api.GetSearch(term=search_query)
+    result = api.GetSearch(term=search_query, count=100)
     previous_tweets = database.read()
     for tweet in result:
         if tweet.user.id in previous_tweets: continue
-        if len(tweet.text) > 105: continue
+        if len(tweet.text) > 121: continue
         tweet_id = tweet.id
         tweet_text = tweet.text
         tweet_user = tweet.user.screen_name
         tweet_user_id = tweet.user.id
-        return tweet_id, tweet_text, tweet_user, tweet_user_id
-
+        
         break
+
+    return tweet_id, tweet_text, tweet_user, tweet_user_id
 
 def post_tweet(status, tweet_id):
     api = connect()
