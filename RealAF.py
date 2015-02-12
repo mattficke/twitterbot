@@ -35,8 +35,7 @@ if __name__ == '__main__':
     search_query = SEARCH_QUERY
     status_frame = RESPONSE
     
-    tweet_id, tweet_text, tweet_user, tweet_user_id = find_tweets(
-                                                    api, search_query)
+    tweet_id, tweet_text, tweet_user, tweet_user_id = find_tweets(search_query)
     
     status = status_frame % (tweet_user, tweet_text)
     
