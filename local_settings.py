@@ -1,3 +1,5 @@
+import os
+
 MY_CONSUMER_KEY = os.environ['CONSUMER_KEY']
 MY_CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
 MY_ACCESS_TOKEN_KEY = os.environ['ACCESS_TOKEN_KEY']
