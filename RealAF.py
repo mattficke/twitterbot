@@ -31,7 +31,7 @@ def post_tweet(status, tweet_id):
     
     api.PostUpdate(status, in_reply_to_status_id=tweet_id)
 
-if __name__ == '__main__':
+def main():
     search_query = SEARCH_QUERY
     status_frame = RESPONSE
     
@@ -42,3 +42,6 @@ if __name__ == '__main__':
     sent_tweet = post_tweet(status, tweet_id)
     
     database.write(tweet_user_id)
+
+if __name__ == '__main__':
+	main()
