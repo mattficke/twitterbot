@@ -1,10 +1,18 @@
 import psycopg2
 import os
+import urlparse
 
-DATABASE_URL = os.environ['DATABASE_URL']
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
 def write(num):
-    conn = psycopg2.connect(DATABASE_URL)
+    conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
     cur = conn.cursor()
     SQL = "INSERT INTO tweets (user_mentions_id) VALUES (%s);"
     data = [num]
@@ -14,7 +22,13 @@ def write(num):
     conn.close()
     
 def read():
-    conn = psycopg2.connect(DATABASE_URL)
+    conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
     cur = conn.cursor()
     SQL = "SELECT user_mentions_id FROM tweets;"
     cur.execute(SQL)
