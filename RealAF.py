@@ -21,10 +21,9 @@ def find_tweets(search_query):
         tweet_text = tweet.text
         tweet_user = tweet.user.screen_name
         tweet_user_id = tweet.user.id
-        
-        break
+        return tweet_id, tweet_text, tweet_user, tweet_user_id
 
-    return tweet_id, tweet_text, tweet_user, tweet_user_id
+        break
 
 def post_tweet(status, tweet_id):
     api = connect()
