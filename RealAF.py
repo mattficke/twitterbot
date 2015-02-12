@@ -42,6 +42,3 @@ if __name__ == '__main__':
     sent_tweet = post_tweet(status, tweet_id)
     
     database.write(tweet_user_id)
-    
-    print sent_tweet.text.encode('utf-8')
-        
