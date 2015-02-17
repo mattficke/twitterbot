@@ -4,11 +4,10 @@ import database
 
 def connect():
     api = twitter.Api(
-					consumer_key=local_settings.MY_CONSUMER_KEY,
-					consumer_secret=local_settings.MY_CONSUMER_SECRET,
-					access_token_key=local_settings.MY_ACCESS_TOKEN_KEY,
-					access_token_secret=local_settings.MY_ACCESS_TOKEN_SECRET
-					)
+			consumer_key=local_settings.MY_CONSUMER_KEY,
+			consumer_secret=local_settings.MY_CONSUMER_SECRET,
+			access_token_key=local_settings.MY_ACCESS_TOKEN_KEY,
+			access_token_secret=local_settings.MY_ACCESS_TOKEN_SECRET)
 
     return api
 
