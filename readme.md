@@ -9,13 +9,15 @@ The Master branch is set up to run on your local machine. The Heroku branch is m
 1. Create a twitter account to post to.
 2. Add a phone number to the account profile. This is required by Twitter to create an application. Twitter only allows a phone number to be associated with one account, use a Google Voice number or similar if your number is already associated with your primary account.
 3. Sign in to https://apps.twitter.com/ with this new account and create a new application. Set the permissions to "Read and Write".
-4. Get the Consumer Key, Consumer Secret, Access Token, and Access Token Secret from the Twitter Application Management page. Set them as the [environment variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps) used in `local_settings.py`.
+4. Get the Consumer Key, Consumer Secret, Access Token, and Access Token Secret from the Twitter Application Management page. Set them as the [environment variables](https://devcenter.heroku.com/articles/config-vars) used in `local_settings.py`.
 6. Export the string you want to search for as the environment variable `SEARCH_QUERY` (make sure to use [url encoding](http://en.wikipedia.org/wiki/Percent-encoding)).
 7. Export the response you want your bot to make as the environment variable `RESPONSE`.
 8. This script requires [python-twitter](https://github.com/bear/python-twitter), available with `pip install python-twitter`.
 
 ##Database Setup
 Twitterbot uses a PostgreSQL database to store the Twitter IDs that the bot has previously responded to.
+
+On Heroku, you will need the [Heroku Postgres](https://addons.heroku.com/heroku-postgresql) add-on.
 
 In your database, create table `tweets` with column `user_mentions_id` of data type `bigint` to store the Twitter IDs.
 
@@ -25,11 +27,15 @@ The database module requires [psycopg2](https://github.com/psycopg/psycopg2), av
 
 ##Running the script locally
 
-From the command line, go to the project's root directory and run the script with `python twitterbot.py`.
+See instructions in the Master branch.
 
 ##Running the script remotely
 
-See instructions in the Heroku branch.
+To run on Heroku, follow their [Getting Started](https://devcenter.heroku.com/start) instructions.
+
+Once deployed, run the bot manually with `heroku run python twitterbot.py`.
+
+To automate the script, use the [Heroku Scheduler](https://addons.heroku.com/scheduler?utm_campaign=category&utm_medium=dashboard&utm_source=addons) add-on to run the task `python twitterbot.py` at the interval of your choosing.
 
 ##Issues
 
