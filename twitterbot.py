@@ -16,11 +16,8 @@ def find_tweets(search_query):
     result = api.GetSearch(term=search_query, count=100)
     previous_tweets = database.read()
     for tweet in result:
-        if tweet.user.id in previous_tweets:
-            continue
-        if (len(tweet.text) + len(tweet.user.screen_name) +
-            len(status_frame) > 138):
-            continue
+        if tweet.user.id in previous_tweets: continue
+        if len(tweet.text) + len(tweet.user.screen_name) > 115: continue
         tweet_id = tweet.id
         tweet_text = tweet.text
         tweet_user = tweet.user.screen_name
